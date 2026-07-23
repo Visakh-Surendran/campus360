@@ -1,33 +1,77 @@
 <!DOCTYPE html>
-<html ng-app="CAMPUS360">
+<html ng-app="campus360">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <script src="node_modules/angular/angular.min.js"></script>
     <script src="js/app.js"></script>
-    <title>Document</title>
+
+    <title>Campus360</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body ng-controller="dashboardcontroller">
-<input type="text"  name ="" id = "" ng-model="collegename">
-<h1>{{collegename}}</h1>
 
+    <h1>{{ collegename }}</h1>
 
+    <input type="text" ng-model="collegename">
 
-    <!-- <p>Campus360</p> -->
-    <p>Total Students : {{totalstudents}}</p>
-    <input type="text"  name ="" id = "" ng-model="totalstudents">
+    <br><br>
 
-    <p>Total Faculty : {{totalfaculty}}</p>
-    
-<input type="text"  name ="" id = "" ng-model="totalfaculty">
-<ul>
- <li ng-repeat="student in students">
-     {{student}}
-    
- </li>
- 
+    <input type="number" ng-model="totalstudent">
 
+    <p ng-class="{'green': totalstudent > 1000, 'red': totalstudent < 1000}">
+        Total Students: {{ totalstudent }}
+    </p>
 
-</ul>
+    <input type="number" ng-model="totalFaculty">
+
+    <p>Total Faculty: {{ totalFaculty }}</p>
+
+    <hr>
+
+    <h2>Add Student</h2>
+
+    <input type="text"
+           placeholder="Enter student name"
+           ng-model="newStudent">
+
+    <button ng-click="addstudent()">
+        Add Student
+    </button>
+
+    <hr>
+
+    <h2>Student List</h2>
+
+    <button ng-click="showstudents = !showstudents">
+        {{ showstudents ? 'Hide Students' : 'Show Students' }}
+    </button>
+
+    <ul ng-show="showstudents">
+        <li ng-repeat="student in students">
+            {{ student }}
+        </li>
+    </ul>
+
+    <hr>
+
+    <h2>AngularJS Filters</h2>
+
+    <p>Uppercase: {{ collegeName | uppercase }}</p>
+
+    <p>Lowercase: {{ collegeName | lowercase }}</p>
+
+    <p>Currency: {{ fees | currency:'₹' }}</p>
+
+    <p>Date: {{ today | date:'dd/MM/yyyy' }}</p>
+
+    <p>Number: {{ fees | number:2 }}</p>
+
+    <p>Select Department: {{ selectedDepartment }}</p>
+
 </body>
+
 </html>
