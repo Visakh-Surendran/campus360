@@ -1,34 +1,32 @@
 var app = angular.module("campus360", []);
 
-app.controller("dashboardcontroller", function ($scope) {
+app.controller("dashboardController", function ($scope) {
+ 
+  $scope.collegename = "FiSaT";
+  $scope.collegeId = "FISAT-2026";
+  $scope.totalstudents = 1200;
+  $scope.totalfaculty = 120; 
+  $scope.students = ["Shahid", "John", "Allen", "Shaun"];
+  $scope.showstudents = true;
+  $scope.fees = 25600; 
+  $scope.today = new Date();
 
-    $scope.collegename = "Campus360";
-    $scope.totalstudent = 1200;
-    $scope.totalFaculty = 85;
-    $scope.showstudents = true;
+  $scope.departments = ["CSE", "MCA", "MBA", "EEE", "ECE", "BCA", "IMCA"];
+  $scope.selectedDepartment = "MCA"; 
 
+  $scope.addStudent = function () {
+    $scope.totalstudents++;
+  };
 
-    $scope.collegeName = "FISAT";
-    $scope.fees = 125000;
-    $scope.today = new Date();
-    $scope.selectedDepartment = "MCA";
+  $scope.isDisable = true;
+  $scope.allowAdmission = function () {
+    $scope.isDisable = false; 
+  };
 
-    $scope.students = [
-        "Allen",
-        "Visakh",
-        "Goutham"
-    ];
+  $scope.isReadOnly = true;
+  $scope.toggleReadOnly = function () {
+    $scope.isReadOnly = !$scope.isReadOnly;
+  };
 
-    $scope.addstudent = function () {
-
-        if ($scope.newStudent && $scope.newStudent.trim() !== "") {
-
-            $scope.students.push($scope.newStudent);
-            $scope.totalstudent++;
-            $scope.newStudent = "";
-
-        }
-
-    };
-
+  $scope.student = {};
 });
